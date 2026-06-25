@@ -1,4 +1,4 @@
-"""Entità PosizioneCredizizia: esposizione creditizia di un soggetto verso un intermediario."""
+"""Entità PosizioneCreditizia: esposizione creditizia di un soggetto verso un intermediario."""
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -8,7 +8,7 @@ from uuid import UUID, uuid4
 
 
 @dataclass
-class PosizioneCredizizia:
+class PosizioneCreditizia:
     """Rappresenta l'esposizione creditizia di un soggetto verso un intermediario."""
 
     soggetto_id: UUID

@@ -1,28 +1,28 @@
-"""Implementazione in-memory del PosizioneCrediziziaRepository."""
+"""Implementazione in-memory del PosizioneCreditiziaRepository."""
 from __future__ import annotations
 
 from typing import Dict, List, Optional
 from uuid import UUID
 
-from src.domain.entities.posizione_creditizia import PosizioneCredizizia
+from src.domain.entities.posizione_creditizia import PosizioneCreditizia
 from src.domain.repositories.posizione_creditizia_repository import (
-    PosizioneCrediziziaRepository,
+    PosizioneCreditiziaRepository,
 )
 
 
-class InMemoryPosizioneCrediziziaRepository(PosizioneCrediziziaRepository):
+class InMemoryPosizioneCreditiziaRepository(PosizioneCreditiziaRepository):
     """Repository in-memory delle Posizioni Creditizie, adatto per test e prototipazione."""
 
     def __init__(self) -> None:
-        self._store: Dict[UUID, PosizioneCredizizia] = {}
+        self._store: Dict[UUID, PosizioneCreditizia] = {}
 
-    def salva(self, posizione: PosizioneCredizizia) -> None:
+    def salva(self, posizione: PosizioneCreditizia) -> None:
         self._store[posizione.id] = posizione
 
-    def trova_per_id(self, id: UUID) -> Optional[PosizioneCredizizia]:
+    def trova_per_id(self, id: UUID) -> Optional[PosizioneCreditizia]:
         return self._store.get(id)
 
-    def trova_per_soggetto(self, soggetto_id: UUID) -> List[PosizioneCredizizia]:
+    def trova_per_soggetto(self, soggetto_id: UUID) -> List[PosizioneCreditizia]:
         return [p for p in self._store.values() if p.soggetto_id == soggetto_id]
 
     def elimina(self, id: UUID) -> None:

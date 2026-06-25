@@ -1,13 +1,13 @@
-"""Test del layer Domain: entità PosizioneCredizizia."""
+"""Test del layer Domain: entità PosizioneCreditizia."""
 import pytest
 from datetime import date
 from decimal import Decimal
 from uuid import uuid4
 
-from src.domain.entities.posizione_creditizia import PosizioneCredizizia
+from src.domain.entities.posizione_creditizia import PosizioneCreditizia
 
 
-def _posizione(**kwargs) -> PosizioneCredizizia:
+def _posizione(**kwargs) -> PosizioneCreditizia:
     defaults = dict(
         soggetto_id=uuid4(),
         intermediario_abi="03069",
@@ -17,7 +17,7 @@ def _posizione(**kwargs) -> PosizioneCredizizia:
         data_segnalazione=date(2024, 1, 31),
     )
     defaults.update(kwargs)
-    return PosizioneCredizizia(**defaults)
+    return PosizioneCreditizia(**defaults)
 
 
 def test_posizione_valida():

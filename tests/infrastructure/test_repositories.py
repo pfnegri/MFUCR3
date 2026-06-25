@@ -4,12 +4,12 @@ from decimal import Decimal
 from uuid import uuid4
 
 from src.domain.entities.soggetto import Soggetto
-from src.domain.entities.posizione_creditizia import PosizioneCredizizia
+from src.domain.entities.posizione_creditizia import PosizioneCreditizia
 from src.infrastructure.repositories.in_memory_soggetto_repository import (
     InMemorySoggettoRepository,
 )
 from src.infrastructure.repositories.in_memory_posizione_creditizia_repository import (
-    InMemoryPosizioneCrediziziaRepository,
+    InMemoryPosizioneCreditiziaRepository,
 )
 
 
@@ -49,12 +49,12 @@ def test_soggetto_repo_elimina():
 
 
 def test_posizione_repo_trova_per_soggetto():
-    repo = InMemoryPosizioneCrediziziaRepository()
+    repo = InMemoryPosizioneCreditiziaRepository()
     soggetto_id = uuid4()
     altro_id = uuid4()
     for _ in range(2):
         repo.salva(
-            PosizioneCredizizia(
+            PosizioneCreditizia(
                 soggetto_id=soggetto_id,
                 intermediario_abi="03069",
                 importo_accordato=Decimal("10000"),
@@ -64,7 +64,7 @@ def test_posizione_repo_trova_per_soggetto():
             )
         )
     repo.salva(
-        PosizioneCredizizia(
+        PosizioneCreditizia(
             soggetto_id=altro_id,
             intermediario_abi="03069",
             importo_accordato=Decimal("10000"),

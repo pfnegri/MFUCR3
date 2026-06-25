@@ -15,7 +15,7 @@ from src.infrastructure.repositories.in_memory_soggetto_repository import (
     InMemorySoggettoRepository,
 )
 from src.infrastructure.repositories.in_memory_posizione_creditizia_repository import (
-    InMemoryPosizioneCrediziziaRepository,
+    InMemoryPosizioneCreditiziaRepository,
 )
 
 
@@ -23,7 +23,7 @@ from src.infrastructure.repositories.in_memory_posizione_creditizia_repository i
 def client():
     """Client con repository freschi per ogni test."""
     soggetto_repo = InMemorySoggettoRepository()
-    posizione_repo = InMemoryPosizioneCrediziziaRepository()
+    posizione_repo = InMemoryPosizioneCreditiziaRepository()
 
     app.dependency_overrides[get_soggetto_service] = lambda: SoggettoService(soggetto_repo)
     app.dependency_overrides[get_centrale_rischi_service] = lambda: CentraleRischiService(

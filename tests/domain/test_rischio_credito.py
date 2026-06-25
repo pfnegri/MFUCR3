@@ -3,16 +3,16 @@ from datetime import date
 from decimal import Decimal
 from uuid import uuid4
 
-from src.domain.entities.posizione_creditizia import PosizioneCredizizia
+from src.domain.entities.posizione_creditizia import PosizioneCreditizia
 from src.domain.entities.rischio_credito import RischioCredito
 from src.domain.services.rischio_credito_service import RischioCreditoService
 from src.infrastructure.repositories.in_memory_posizione_creditizia_repository import (
-    InMemoryPosizioneCrediziziaRepository,
+    InMemoryPosizioneCreditiziaRepository,
 )
 
 
 def _make_posizione(soggetto_id, categoria, accordato, utilizzato):
-    return PosizioneCredizizia(
+    return PosizioneCreditizia(
         soggetto_id=soggetto_id,
         intermediario_abi="03069",
         importo_accordato=Decimal(str(accordato)),
@@ -46,7 +46,7 @@ def test_rischio_credito_soggetto_diverso():
 
 
 def test_domain_service_soggetto_in_sofferenza():
-    repo = InMemoryPosizioneCrediziziaRepository()
+    repo = InMemoryPosizioneCreditiziaRepository()
     soggetto_id = uuid4()
     p = _make_posizione(soggetto_id, "SOFFERENZE", 5000, 5000)
     repo.salva(p)
@@ -56,7 +56,7 @@ def test_domain_service_soggetto_in_sofferenza():
 
 
 def test_domain_service_soggetto_non_in_sofferenza():
-    repo = InMemoryPosizioneCrediziziaRepository()
+    repo = InMemoryPosizioneCreditiziaRepository()
     soggetto_id = uuid4()
     p = _make_posizione(soggetto_id, "A_REVOCA", 10000, 3000)
     repo.salva(p)

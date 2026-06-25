@@ -9,7 +9,7 @@ from uuid import UUID
 
 
 @dataclass(frozen=True)
-class PosizioneCrediziziaDTO:
+class PosizioneCreditiziaDTO:
     id: UUID
     soggetto_id: UUID
     intermediario_abi: str
@@ -36,4 +36,4 @@ class RischioCreditoDTO:
     esposizione_totale: Decimal
     accordato_totale: Decimal
     esposizione_in_sofferenza: Decimal
-    posizioni: List[PosizioneCrediziziaDTO] = field(default_factory=list)
+    posizioni: List[PosizioneCreditiziaDTO] = field(default_factory=list)

@@ -6,14 +6,14 @@ from uuid import UUID
 
 from src.domain.entities.rischio_credito import RischioCredito
 from src.domain.repositories.posizione_creditizia_repository import (
-    PosizioneCrediziziaRepository,
+    PosizioneCreditiziaRepository,
 )
 
 
 class RischioCreditoService:
     """Servizio di dominio per l'elaborazione del rischio di credito."""
 
-    def __init__(self, posizione_repo: PosizioneCrediziziaRepository) -> None:
+    def __init__(self, posizione_repo: PosizioneCreditiziaRepository) -> None:
         self._posizione_repo = posizione_repo
 
     def calcola_rischio(self, soggetto_id: UUID) -> RischioCredito:

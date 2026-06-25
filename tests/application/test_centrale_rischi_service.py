@@ -12,14 +12,14 @@ from src.infrastructure.repositories.in_memory_soggetto_repository import (
     InMemorySoggettoRepository,
 )
 from src.infrastructure.repositories.in_memory_posizione_creditizia_repository import (
-    InMemoryPosizioneCrediziziaRepository,
+    InMemoryPosizioneCreditiziaRepository,
 )
 
 
 @pytest.fixture
 def repos():
     soggetto_repo = InMemorySoggettoRepository()
-    posizione_repo = InMemoryPosizioneCrediziziaRepository()
+    posizione_repo = InMemoryPosizioneCreditiziaRepository()
     return soggetto_repo, posizione_repo
 
 

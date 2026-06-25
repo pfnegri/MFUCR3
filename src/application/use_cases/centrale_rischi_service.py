@@ -4,21 +4,21 @@ from __future__ import annotations
 from typing import List, Optional
 from uuid import UUID
 
-from src.domain.entities.posizione_creditizia import PosizioneCredizizia
+from src.domain.entities.posizione_creditizia import PosizioneCreditizia
 from src.domain.repositories.posizione_creditizia_repository import (
-    PosizioneCrediziziaRepository,
+    PosizioneCreditiziaRepository,
 )
 from src.domain.repositories.soggetto_repository import SoggettoRepository
 from src.domain.services.rischio_credito_service import RischioCreditoService
 from src.application.dtos.posizione_dto import (
     CreaPosizioneCommand,
-    PosizioneCrediziziaDTO,
+    PosizioneCreditiziaDTO,
     RischioCreditoDTO,
 )
 
 
-def _to_dto(posizione: PosizioneCredizizia) -> PosizioneCrediziziaDTO:
-    return PosizioneCrediziziaDTO(
+def _to_dto(posizione: PosizioneCreditizia) -> PosizioneCreditiziaDTO:
+    return PosizioneCreditiziaDTO(
         id=posizione.id,
         soggetto_id=posizione.soggetto_id,
         intermediario_abi=posizione.intermediario_abi,
@@ -36,7 +36,7 @@ class CentraleRischiService:
     def __init__(
         self,
         soggetto_repo: SoggettoRepository,
-        posizione_repo: PosizioneCrediziziaRepository,
+        posizione_repo: PosizioneCreditiziaRepository,
     ) -> None:
         self._soggetto_repo = soggetto_repo
         self._posizione_repo = posizione_repo
@@ -44,13 +44,13 @@ class CentraleRischiService:
 
     def registra_posizione(
         self, command: CreaPosizioneCommand
-    ) -> PosizioneCrediziziaDTO:
+    ) -> PosizioneCreditiziaDTO:
         """Registra una nuova posizione creditizia per il soggetto."""
         if self._soggetto_repo.trova_per_id(command.soggetto_id) is None:
             raise ValueError(
                 f"Soggetto con id '{command.soggetto_id}' non trovato."
             )
-        posizione = PosizioneCredizizia(
+        posizione = PosizioneCreditizia(
             soggetto_id=command.soggetto_id,
             intermediario_abi=command.intermediario_abi,
             importo_accordato=command.importo_accordato,
@@ -63,7 +63,7 @@ class CentraleRischiService:
 
     def ottieni_posizioni_soggetto(
         self, soggetto_id: UUID
-    ) -> List[PosizioneCrediziziaDTO]:
+    ) -> List[PosizioneCreditiziaDTO]:
         """Ritorna tutte le posizioni del soggetto."""
         return [
             _to_dto(p)

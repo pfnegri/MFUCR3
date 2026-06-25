@@ -1,4 +1,4 @@
 from .soggetto_repository import SoggettoRepository
-from .posizione_creditizia_repository import PosizioneCrediziziaRepository
+from .posizione_creditizia_repository import PosizioneCreditiziaRepository
 
-__all__ = ["SoggettoRepository", "PosizioneCrediziziaRepository"]  # noqa: F401
+__all__ = ["SoggettoRepository", "PosizioneCreditiziaRepository"]  # noqa: F401

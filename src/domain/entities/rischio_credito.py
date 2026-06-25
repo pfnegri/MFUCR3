@@ -6,7 +6,7 @@ from decimal import Decimal
 from typing import List
 from uuid import UUID, uuid4
 
-from .posizione_creditizia import PosizioneCredizizia
+from .posizione_creditizia import PosizioneCreditizia
 
 
 @dataclass
@@ -14,7 +14,7 @@ class RischioCredito:
     """Aggregato del rischio di credito complessivo di un soggetto."""
 
     soggetto_id: UUID
-    posizioni: List[PosizioneCredizizia] = field(default_factory=list)
+    posizioni: List[PosizioneCreditizia] = field(default_factory=list)
     id: UUID = field(default_factory=uuid4)
 
     @property
@@ -39,7 +39,7 @@ class RischioCredito:
             Decimal("0"),
         )
 
-    def aggiungi_posizione(self, posizione: PosizioneCredizizia) -> None:
+    def aggiungi_posizione(self, posizione: PosizioneCreditizia) -> None:
         if posizione.soggetto_id != self.soggetto_id:
             raise ValueError(
                 "La posizione non appartiene al soggetto di questo rischio credito."
